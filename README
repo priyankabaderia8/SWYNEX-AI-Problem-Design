@@ -1,0 +1,345 @@
+# 🤖 B2B PET Bottle Review Intelligence System
+
+An AI-powered **B2B customer review intelligence system** developed as part of an AI Problem Design Internship Task at **Swynex Technologies**.
+
+The system uses **Natural Language Processing (NLP)** and machine learning to automatically analyze client reviews, identify sentiment, classify feedback, and flag potentially suspicious or biased reviews for further manual verification.
+
+---
+
+## 📌 Project Overview
+
+Swynex Technologies receives a large volume of B2B client feedback through its order and communication channels.
+
+Manually reviewing hundreds of client reviews can be:
+
+* ⏳ Time-consuming
+* 📉 Inconsistent
+* 👀 Prone to missing emerging negative trends
+* 🔍 Difficult to monitor at scale
+
+This project proposes an AI-based solution that converts unstructured client feedback into **structured and actionable business insights**.
+
+### The system is designed to:
+
+* Detect **Positive / Negative sentiment**
+* Analyze different types of client feedback
+* Identify potentially **fake or biased reviews**
+* Generate business-level review insights
+* Provide outputs that can support quality and customer-experience decisions
+
+---
+
+## 🎯 Problem Statement
+
+> **How can AI automatically analyze large volumes of B2B customer reviews and help business teams identify customer sentiment and potentially suspicious feedback without manually reading every review?**
+
+The objective is to build a lightweight machine-learning solution that can process text-based feedback efficiently on a local machine without requiring a dedicated GPU.
+
+---
+
+## 👥 Target Users
+
+| User                        | Purpose                                                       |
+| --------------------------- | ------------------------------------------------------------- |
+| **Business Analytics Team** | Analyze customer sentiment and identify trends                |
+| **Quality Manager**         | Monitor negative feedback and potential quality issues        |
+| **Business Team**           | Use review insights for operational decision-making           |
+| **B2B Clients**             | Their feedback contributes to product and process improvement |
+
+---
+
+## 📊 Dataset
+
+The project uses:
+
+`manufacturing_b2b_dataset.xlsx`
+
+### Dataset Characteristics
+
+| Attribute           | Details                                |
+| ------------------- | -------------------------------------- |
+| Dataset Type        | B2B Manufacturing Customer Reviews     |
+| Records             | 500+ reviews                           |
+| Text Data           | Client reviews                         |
+| Structured Data     | Ratings, client information, sentiment |
+| Primary Text Column | `Client_Review`                        |
+| Target Column       | `Review_Sentiment`                     |
+| Rating Column       | `Rating`                               |
+| Client Identifier   | `Client_Name`                          |
+
+The dataset combines **unstructured text** with structured customer-review metadata.
+
+---
+
+## 🧠 AI / Machine Learning Approach
+
+The project uses a lightweight NLP and machine-learning pipeline.
+
+### Workflow
+
+```text
+Raw B2B Reviews
+       ↓
+Text Cleaning & Preprocessing
+       ↓
+TF-IDF Vectorization
+       ↓
+Logistic Regression
+       ↓
+Sentiment Prediction
+       ↓
+Review Analysis
+       ↓
+Business Insights / Dashboard
+```
+
+### 1. Text Preprocessing
+
+The review text is cleaned and prepared for machine learning.
+
+Typical preprocessing includes:
+
+* Handling missing values
+* Converting text to a consistent format
+* Removing unnecessary characters
+* Basic text normalization
+* Preparing reviews for vectorization
+
+### 2. TF-IDF Vectorization
+
+**TF-IDF (Term Frequency–Inverse Document Frequency)** converts textual reviews into numerical features that the machine-learning model can understand.
+
+It gives greater importance to words that are useful for distinguishing between reviews while reducing the importance of very common terms.
+
+### 3. Logistic Regression
+
+A **Logistic Regression** classifier is used for sentiment classification.
+
+The model predicts whether a review belongs to:
+
+* 🟢 Positive
+* 🔴 Negative
+
+The approach was selected because it is lightweight, interpretable, and suitable for running on a local machine without GPU requirements.
+
+---
+
+## 🚨 Suspicious / Potentially Biased Reviews
+
+The system also considers signals that may indicate reviews requiring manual verification.
+
+Examples of signals that can be investigated include:
+
+* Unusual review patterns
+* Repeated or highly similar review text
+* Rating-text inconsistencies
+* Extremely repetitive language
+* Suspicious review behavior
+
+> **Important:** A flagged review should not automatically be considered fake. The system is intended to identify reviews that require **human verification**.
+
+---
+
+## 📈 Business Insights
+
+The generated analysis provides a business-friendly view of customer sentiment.
+
+Example result:
+
+| Sentiment | Percentage |
+| --------- | ---------: |
+| Positive  |  **54.8%** |
+| Negative  |  **45.2%** |
+
+This type of analysis can help business teams quickly understand the overall customer-feedback distribution without manually reviewing every record.
+
+---
+
+## 📊 Model Performance
+
+The current experiment produced:
+
+| Metric             |   Result | Target |
+| ------------------ | -------: | -----: |
+| Accuracy           | **100%** |   >85% |
+| Weighted Precision | **1.00** |   >85% |
+| Weighted Recall    | **1.00** |   >85% |
+| Weighted F1-Score  | **1.00** |   >85% |
+
+### ⚠️ Validation Note
+
+The reported 100% performance should be **validated carefully before being treated as a final production metric**.
+
+A perfect score on a dataset of approximately 500 records can sometimes indicate:
+
+* Data leakage
+* Duplicate or near-duplicate records across train/test sets
+* An overly small test set
+* A very clean or easily separable dataset
+
+For a production-ready evaluation, the model should be tested using a properly separated and **stratified train/test split**, with duplicate or near-duplicate reviews checked to prevent leakage.
+
+Therefore, the 100% result is reported as the **current experimental result**, not as a guarantee of real-world performance.
+
+---
+
+## 💼 Business Value
+
+The proposed system can help Swynex Technologies:
+
+### ⚡ Save Manual Review Time
+
+Automatically process large numbers of customer reviews.
+
+### 📉 Detect Negative Feedback
+
+Surface negative customer sentiment that may require attention.
+
+### 🔍 Identify Potentially Suspicious Reviews
+
+Flag unusual feedback patterns for manual investigation.
+
+### 📊 Support Data-Driven Decisions
+
+Convert raw customer feedback into structured business insights.
+
+### 🚀 Improve Scalability
+
+Allow the review-analysis process to handle increasing feedback volumes.
+
+---
+
+## 🛠️ Tech Stack
+
+| Technology              | Purpose                         |
+| ----------------------- | ------------------------------- |
+| **Python**              | Programming language            |
+| **Pandas**              | Data loading and manipulation   |
+| **Scikit-learn**        | Machine learning                |
+| **TF-IDF Vectorizer**   | Text feature extraction         |
+| **Logistic Regression** | Sentiment classification        |
+| **NLP**                 | Text preprocessing and analysis |
+| **Excel (.xlsx)**       | Dataset source                  |
+
+---
+
+## 📂 Repository Structure
+
+```text
+B2B-Review-Intelligence-System/
+│
+├── app.py
+├── manufacturing_b2b_dataset.xlsx
+├── b2b-review-intelligence-system.md
+├── result.png
+└── README.md
+```
+
+### File Description
+
+| File                                | Description                                            |
+| ----------------------------------- | ------------------------------------------------------ |
+| `app.py`                            | Main Python application containing the AI/NLP pipeline |
+| `manufacturing_b2b_dataset.xlsx`    | B2B customer review dataset                            |
+| `b2b-review-intelligence-system.md` | AI problem definition and success criteria             |
+| `result.png`                        | Model result / output screenshot                       |
+| `README.md`                         | Project documentation                                  |
+
+---
+
+## ▶️ How to Run the Project
+
+### 1. Clone the repository
+
+```bash
+git clone <your-github-repository-url>
+```
+
+### 2. Navigate to the project directory
+
+```bash
+cd B2B-Review-Intelligence-System
+```
+
+### 3. Install dependencies
+
+```bash
+pip install pandas scikit-learn openpyxl
+```
+
+### 4. Run the application
+
+```bash
+python app.py
+```
+
+---
+
+## 🔮 Future Improvements
+
+The current project can be extended with:
+
+* Multilingual review support
+* Advanced fake-review detection
+* Duplicate and near-duplicate review detection
+* Sentiment confidence scores
+* Positive/negative trend analysis over time
+* Topic classification using advanced NLP models
+* Interactive Power BI or Streamlit dashboard
+* Model comparison with Naive Bayes, SVM, and transformer-based models
+* Cross-validation and more robust model evaluation
+* Human-in-the-loop review verification
+
+---
+
+## 🎯 Success Criteria
+
+The project was designed around three main objectives:
+
+### 1. Model Performance
+
+Target: **>85% classification performance**
+
+### 2. Business Usability
+
+Convert model predictions into understandable business insights rather than presenting only technical metrics.
+
+### 3. Core Functionality
+
+The solution should support:
+
+* Sentiment classification
+* Review analysis
+* Suspicious-review flagging
+* Business-oriented reporting
+
+---
+
+## 📸 Project Result
+
+![Model Result](result.png)
+
+The screenshot above shows the current experimental model result and generated analysis output.
+
+---
+
+## 🏢 Internship Context
+
+This project was developed as part of an **AI Problem Design Internship Task at Swynex Technologies**.
+
+The project demonstrates the application of:
+
+**Business Problem → Data → NLP → Machine Learning → Analysis → Business Insight**
+
+---
+
+## 👩‍💻 Developed By
+
+**Priyanka Baderia**
+AI Intern — **Swynex Technologies**
+
+---
+
+## ⭐ Key Learning
+
+This project provided practical exposure to building an end-to-end NLP-based machine-learning workflow, from defining a real-world business problem and preparing review data to applying **TF-IDF + Logistic Regression** and translating model outputs into business-oriented insights.
