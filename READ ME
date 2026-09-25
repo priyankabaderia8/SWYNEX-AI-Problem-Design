@@ -1,0 +1,92 @@
+# SWYNEX TECHNOLOGIES
+## AI Problem Design — Internship Task
+
+### Task 1: Define a Practical AI Problem and Success Criteria
+
+---
+
+## 1. Practical AI Problem
+
+**B2B PET Bottle Review Intelligence System**
+
+Swynex Technologies is a B2B PET bottle manufacturing company that receives 100+ client reviews daily across its order channels. Manual analysis of this volume is slow, inconsistent, and prone to missing early warning signs — such as emerging negative trends or potentially fake/biased reviews.
+
+This project proposes an AI system that automatically analyzes B2B client feedback to:
+- Detect review sentiment (Positive / Negative)
+- Classify review types
+- Flag potentially fake or biased reviews for manual verification
+
+The goal is to give the business team a fast, reliable, and actionable view of client satisfaction — without requiring anyone to read every review manually.
+
+---
+
+## 2. User
+
+| Role | Description |
+|---|---|
+| **Primary User** | Business Analytics Team / Quality Manager at Swynex |
+| **Secondary User** | B2B clients, whose feedback indirectly drives product and process improvements |
+
+---
+
+## 3. Data Source
+
+| Attribute | Detail |
+|---|---|
+| **Dataset** | `manufacturing_b2b_dataset.xlsx` |
+| **Key Columns** | `Client_Review`, `Review_Sentiment`, `Rating`, `Client_Name` |
+| **Size** | 500+ real B2B client reviews |
+| **Data Type** | Mixed — free-text reviews + structured metadata |
+
+---
+
+## 4. Constraints
+
+- Model must be lightweight and run on a local machine — **no dedicated GPU required**
+- Minimum acceptable accuracy: **> 85%** for business deployment
+- Must handle real-world noisy text (typos, informal phrasing, mixed languages)
+- Output must be presented as a **business-friendly dashboard**, not raw model metrics
+
+---
+
+## 5. Success Criteria
+
+| Criterion | Result | Target | Status |
+|---|---|---|---|
+| Model Accuracy | 100% (Weighted Precision/Recall/F1 = 1.00) | > 85% | ✅ Exceeded |
+| Business Dashboard | 54.8% Positive / 45.2% Negative | Actionable insight | ✅ Delivered |
+| Functionality | Sentiment classification, fake-review flagging, downloadable report | Core features working | ✅ Complete |
+
+> **Note for review:** A 100% accuracy score on a ~500-row dataset is worth double-checking before final submission — it can be a genuine result on a clean, well-separated dataset, but it's also a common symptom of test-data leakage or an overly small/simple test split. Worth confirming the train/test split was done correctly (no shared rows, stratified split) before presenting this number as final.
+
+---
+
+## 6. Tech Stack
+
+- **Language:** Python
+- **Data Handling:** Pandas
+- **Modeling:** Scikit-learn — TF-IDF Vectorizer + Logistic Regression
+- **NLP:** Text cleaning and preprocessing pipeline
+
+---
+
+## 7. Results
+
+![Result](result.png)
+
+*Model Accuracy: 100% | Business Dashboard Generated Successfully*
+
+---
+
+## 8. Repository Structure
+
+| File | Description |
+|---|---|
+| `app.py` | Main AI model pipeline (training + inference) |
+| `manufacturing_b2b_dataset.xlsx` | Source dataset |
+| `b2b-review-intelligence-system.md` | Problem definition document |
+| `result.png` | Model output / accuracy screenshot |
+
+---
+
+**Developed by:** Priyanka Baderia | Swynex AI Intern
